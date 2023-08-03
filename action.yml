@@ -1,11 +1,11 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'go-test2jsonmd'
+description: 'Transform gotest json to markdown'
+author: 'Jan-Helge Bergesen'
 inputs:
-  milliseconds: # change this
+  json_file:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'path to the json output from gotest/gotestsum'
+    default: ''
 runs:
   using: 'node16'
   main: 'dist/index.js'
