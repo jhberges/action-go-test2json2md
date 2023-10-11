@@ -1,11 +1,15 @@
-name: 'go-test2jsonmd'
-description: 'Transform gotest json to markdown'
-author: 'Jan-Helge Bergesen'
+name: go-test2jsonmd
+description: Transform gotest json to markdown
+author: Jan-Helge Bergesen
 inputs:
+  gotest2json2md_version:
+    required: true
+    description: version of the tool to use
+    default: v0.0.4
   json_file:
     required: true
-    description: 'path to the json output from gotest/gotestsum'
+    description: path to the json output from gotest/gotestsum
     default: ''
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: node16
+  main: dist/index.js
