@@ -47,7 +47,7 @@ const os = __importStar(__nccwpck_require__(2037));
 const path = __importStar(__nccwpck_require__(1017));
 const util = __importStar(__nccwpck_require__(3837));
 // Borrowing from https://github.com/autero1/action-gotestsum
-const executableName = 'go-test2json2md';
+const executableName = 'gotest2json2md';
 const fullExecutableFormat = 'go-test2json2md_%s_x86_64';
 const downloadUrlFormat = `https://github.com/jhberges/go-test2json2md/releases/download/%s/${fullExecutableFormat}.tar.gz`;
 function getExecutableExtension() {
