@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as util from 'util'
 // Borrowing from https://github.com/autero1/action-gotestsum
 const executableName = 'go-test2json2md'
-const fullExecutableFormat = 'go-test2json2md_%s_amd64'
+const fullExecutableFormat = 'go-test2json2md_%s_x86_64'
 const downloadUrlFormat = `https://github.com/jhberges/go-test2json2md/releases/download/%s/${fullExecutableFormat}.tar.gz`
 
 export function getExecutableExtension(): string {
@@ -17,17 +17,18 @@ export function getExecutableExtension(): string {
 }
 
 export function getDownloadURL(version: string): string {
-  switch (os.type()) {
-    case 'Windows_NT':
-      return util.format(downloadUrlFormat, version, 'windows')
+  return util.format(downloadUrlFormat, version, os.type())
+  // switch (os.type()) {
+  //   case 'Windows_NT':
+  //     return util.format(downloadUrlFormat, version, 'windows')
 
-    case 'Darwin':
-      return util.format(downloadUrlFormat, version, 'darwin')
+  //   case 'Darwin':
+  //     return util.format(downloadUrlFormat, version, 'darwin')
 
-    case 'Linux':
-    default:
-      return util.format(downloadUrlFormat, version, 'linux')
-  }
+  //   case 'Linux':
+  //   default:
+  //     return util.format(downloadUrlFormat, version, 'linux')
+  // }
 }
 
 export function walkSync(
