@@ -19,26 +19,14 @@ export function getExecutableExtension(): string {
 export function getDownloadURL(version: string): string {
   switch (os.type()) {
     case 'Windows_NT':
-      return util.format(
-        downloadUrlFormat,
-        version,
-        'windows'
-      )
+      return util.format(downloadUrlFormat, version, 'windows')
 
     case 'Darwin':
-      return util.format(
-        downloadUrlFormat,
-        version,
-        'darwin'
-      )
+      return util.format(downloadUrlFormat, version, 'darwin')
 
     case 'Linux':
     default:
-      return util.format(
-        downloadUrlFormat,
-        version,
-        'linux'
-      )
+      return util.format(downloadUrlFormat, version, 'linux')
   }
 }
 
@@ -85,7 +73,9 @@ export async function downloadBinary(version: string): Promise<string> {
     try {
       dlPath = await toolCache.downloadTool(dlURL)
     } catch (exception) {
-      throw new Error(util.format('Failed to download gotest2json2md from ', dlURL))
+      throw new Error(
+        util.format('Failed to download gotest2json2md from ', dlURL)
+      )
     }
 
     // Changing temp path permissions

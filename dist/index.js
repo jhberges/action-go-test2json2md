@@ -48,7 +48,7 @@ const path = __importStar(__nccwpck_require__(1017));
 const util = __importStar(__nccwpck_require__(3837));
 // Borrowing from https://github.com/autero1/action-gotestsum
 const executableName = 'go-test2json2md';
-const fullExecutableFormat = 'go-test2json2md_%s_%s_amd64';
+const fullExecutableFormat = 'go-test2json2md_%s_amd64';
 const downloadUrlFormat = `https://github.com/jhberges/go-test2json2md/releases/download/%s/${fullExecutableFormat}.tar.gz`;
 function getExecutableExtension() {
     if (os.type().match(/^Win/)) {
@@ -58,22 +58,21 @@ function getExecutableExtension() {
 }
 exports.getExecutableExtension = getExecutableExtension;
 function getDownloadURL(version) {
-    const versionWithoutPrefix = version.replace('v', '');
     switch (os.type()) {
         case 'Windows_NT':
-            return util.format(downloadUrlFormat, version, versionWithoutPrefix, 'windows');
+            return util.format(downloadUrlFormat, version, 'windows');
         case 'Darwin':
-            return util.format(downloadUrlFormat, version, versionWithoutPrefix, 'darwin');
+            return util.format(downloadUrlFormat, version, 'darwin');
         case 'Linux':
         default:
-            return util.format(downloadUrlFormat, version, versionWithoutPrefix, 'linux');
+            return util.format(downloadUrlFormat, version, 'linux');
     }
 }
 exports.getDownloadURL = getDownloadURL;
 function walkSync(dir, filelist, fileToFind) {
     const files = fs.readdirSync(dir);
     filelist = filelist || [];
-    for (var file of files) {
+    for (const file of files) {
         if (fs.statSync(path.join(dir, file)).isDirectory()) {
             filelist = walkSync(path.join(dir, file), filelist, fileToFind);
         }
@@ -101,7 +100,7 @@ function findExecutable(rootFolder) {
 exports.findExecutable = findExecutable;
 function downloadBinary(version) {
     return __awaiter(this, void 0, void 0, function* () {
-        core.info(`[INFO] Setting up Gotestsum version: '${version}'`);
+        core.info(`[INFO] Setting up gotest2json2md version: '${version}'`);
         // See if we already have it installed
         let cachedToolpath = toolCache.find(executableName, version);
         if (!cachedToolpath) {
@@ -112,7 +111,7 @@ function downloadBinary(version) {
                 dlPath = yield toolCache.downloadTool(dlURL);
             }
             catch (exception) {
-                throw new Error(util.format('Failed to download Gotestsum from ', dlURL));
+                throw new Error(util.format('Failed to download gotest2json2md from ', dlURL));
             }
             // Changing temp path permissions
             fs.chmodSync(dlPath, '777');
