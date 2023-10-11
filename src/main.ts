@@ -49,7 +49,7 @@ export function walkSync(
 ): string[] {
   const files = fs.readdirSync(dir)
   filelist = filelist || []
-  for (var file of files) {
+  for (const file of files) {
     if (fs.statSync(path.join(dir, file)).isDirectory()) {
       filelist = walkSync(path.join(dir, file), filelist, fileToFind)
     } else {
@@ -75,7 +75,7 @@ export function findExecutable(rootFolder: string): string {
   }
 }
 export async function downloadBinary(version: string): Promise<string> {
-  core.info(`[INFO] Setting up Gotestsum version: '${version}'`)
+  core.info(`[INFO] Setting up gotest2json2md version: '${version}'`)
   // See if we already have it installed
   let cachedToolpath = toolCache.find(executableName, version)
   if (!cachedToolpath) {
@@ -85,7 +85,7 @@ export async function downloadBinary(version: string): Promise<string> {
     try {
       dlPath = await toolCache.downloadTool(dlURL)
     } catch (exception) {
-      throw new Error(util.format('Failed to download Gotestsum from ', dlURL))
+      throw new Error(util.format('Failed to download gotest2json2md from ', dlURL))
     }
 
     // Changing temp path permissions
