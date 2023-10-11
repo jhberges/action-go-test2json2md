@@ -17,18 +17,17 @@ export function getExecutableExtension(): string {
 }
 
 export function getDownloadURL(version: string): string {
-  return util.format(downloadUrlFormat, version, os.type())
-  // switch (os.type()) {
-  //   case 'Windows_NT':
-  //     return util.format(downloadUrlFormat, version, 'windows')
+  switch (os.type()) {
+    case 'Windows_NT':
+      return util.format(downloadUrlFormat, version, 'windows')
 
-  //   case 'Darwin':
-  //     return util.format(downloadUrlFormat, version, 'darwin')
+    case 'Darwin':
+      return util.format(downloadUrlFormat, version, 'darwin')
 
-  //   case 'Linux':
-  //   default:
-  //     return util.format(downloadUrlFormat, version, 'linux')
-  // }
+    case 'Linux':
+    default:
+      return util.format(downloadUrlFormat, version, os.type())
+  }
 }
 
 export function walkSync(
