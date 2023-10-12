@@ -22,3 +22,6 @@ jobs:
       - uses: ./
         with:
           gotest2json2md_version: v0.0.4
+      - run: |
+          which gotest2json2md
+          gotest2json2md -h
